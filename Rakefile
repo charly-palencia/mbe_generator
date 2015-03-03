@@ -69,9 +69,9 @@ namespace :mbe do
       address = ask("Your Address?")
       mailbox = ask("Your mail box address?")
       data['client'] = {}
-      data['client']['name'] = name
-      data['client']['address'] = address
-      data['client']['mailbox'] = mailbox
+      data['client']['name'] = name.to_s
+      data['client']['address'] = address.to_s
+      data['client']['mailbox'] = mailbox.to_s
 
       File.open('data/client.yml', 'w') {|f| f.write data.to_yaml }
     end
@@ -82,15 +82,16 @@ namespace :mbe do
     data = YAML::load_file('data/client.yml') #Load
 
     invoice = { 'items' => [] }
-    invoice['reference'] = ask("Reference number:")
-    invoice['shipper'] = ask("Shipper name:"){ |q| q.default = "Amazon Logistic" }
+    invoice['reference'] = ask("Reference number:").to_s
+    shipper = ask("Shipper name:"){ |q| q.default = "Amazon Logistic" }
+    invoice['shipper']  = shipper.to_s
 
     puts "Creating items....".blue
     done = true
     while(done==true)
       item = {}
       item['package'] = ask("Package qty:", Integer){ |q| q.default = 1 }
-      item['name'] = ask("Item name:")
+      item['name'] = ask("Item name:").to_s { |q| q.validate != "" }
       item['qty'] = ask("Item quantity:", Integer){ |q| q.default = 1 }
       item['value'] = ask("Item value:", Float){ |q| q.default = 2.00 }
       invoice['items'] << item
