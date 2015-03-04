@@ -61,6 +61,17 @@ class Invoice
 end
 
 namespace :mbe do
+  task :create_database  do
+    exec "cp ./data/client.yml.example ./data/client.yml"
+  end
+
+  task :remove_user do
+    puts "Removing client information....".blue
+    data = YAML::load_file('data/client.yml') #Load
+    data.delete 'client'
+    File.open('data/client.yml', 'w') {|f| f.write data.to_yaml }
+  end
+
   task :create_user do
     puts "Loading client information....".blue
     data = YAML::load_file('data/client.yml') #Load
