@@ -8,9 +8,21 @@ How it works
      
 *Install Dependencies*
 
-    bundle install
+    bundle install && rake mbe:create_database
     
-*Run command*    
+Commands
+====
+*Create user*
+
+    rake mbe:create_user
+
+*Remove user*
+
+    rake mbe:remove_user
+
+*Generate file* 
+
+Run mbe:create_user too!
 
     rake mbe:generate
    
