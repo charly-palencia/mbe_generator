@@ -12,20 +12,21 @@ How it works
     
 Commands
 ====
-*Create user*
+**Generate file**
+
+Include mbe:create_user too!
+
+    rake mbe:generate
+ 
+**Create user**
 
     rake mbe:create_user
 
-*Remove user*
+**Remove user**
 
     rake mbe:remove_user
 
-*Generate file* 
-
-Run mbe:create_user too!
-
-    rake mbe:generate
-   
+  
 
 Enjoy your MBE File :)
 === 
